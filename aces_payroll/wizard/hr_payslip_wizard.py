@@ -2,6 +2,8 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+from datetime import datetime, timedelta
+from dateutil import relativedelta
 
 
 class HrPyrollWizardLine(models.TransientModel):
@@ -40,10 +42,10 @@ class HrPyrollInheritWizard(models.TransientModel):
         m2m_list = []
         if payslip:
             month_leaves = self.env['hr.leave'].search([('employee_id', '=', payslip.employee_id.id),
-                                                        ('date_from', '>=', payslip.date_from),
-                                                        ('date_to', '<=', payslip.date_to)])
+                                                        ('date_from', '>=', payslip.date_from)])
             for leave in month_leaves:
-
+                delta = relativedelta.relativedelta(payslip.date_to, (leave.date_from + timedelta(hours= -7)))
+                print(delta.days, 'days')
                 m2m_list.append(leave.id)
         values['late_count'] = payslip.late_attendances_ids.__len__()
         values['monday_count'] = payslip.monday_line_ids.__len__()
