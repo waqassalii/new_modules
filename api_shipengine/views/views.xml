@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+    <record id="res_config_settings_view_form_base_setup_inherit" model="ir.ui.view">
+      <field name="name">res.config.settings.view.form.inherit.base.setup.inherit</field>
+      <field name="model">res.config.settings</field>
+      <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//div[@name='integration']" position="inside">
+          <div class="col-12 col-lg-6 o_setting_box" id="shipengine_api">
+            <div class="o_setting_left_pane">
+              <field name="shipengine_api_enabled"/>
+            </div>
+            <div class="o_setting_right_pane">
+              <label for="shipengine_api_enabled"/>
+              <div class="text-muted">
+                Synchronize data between ShipEngine and Odoo
+              </div>
+              <div class="content-group"
+                   attrs="{'invisible': [('shipengine_api_enabled','=',False)]}"
+                   id="api_middleware_settings">
+                <group>
+                  <field name="shipengine_api_key"/>
+                </group>
+              </div>
+            </div>
+          </div>
+        </xpath>
+      </field>
+    </record>
+    <record id="view_delivery_carrier_form_inherit" model="ir.ui.view">
+      <field name="name">delivery.carrier.form.inherit</field>
+      <field name="model">delivery.carrier</field>
+      <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//page[@name='destination']" position="after">
+          <page name="shipengine" string="ShipEngine">
+            <group>
+              <group>
+                <field name="engine_carrier_id"/>
+                <field name="engine_carrier_code"/>
+                <field name="engine_account_number"/>
+                <field name="engine_requires_funded_amount"/>
+              </group>
+              <group>
+                <field name="engine_balance"/>
+                <field name="engine_nickname"/>
+                <field name="engine_friendly_name"/>
+                <field name="engine_primary"/>
+              </group>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

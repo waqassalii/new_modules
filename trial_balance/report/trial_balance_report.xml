@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="custom_trial_balance_report">
+        <t t-call="web.html_container">
+            <!--to print multiple reports on same page put this loop after or inside the external_layout-->
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <style>
+
+                        </style>
+                        <!--<div class="header">
+
+                            <div class="row">
+                                <div class="col-12" style="border-bottom:1px solid black">
+                                    <h3>Trial Balance</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Between:</td>
+                                                <td><t t-esc="doc.date_from"/></td>
+                                                <td><t t-esc="doc.date_from"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    &lt;!&ndash; <p>Between:</p>
+                                     <t t-esc="doc.date_from"/>
+                                     <t t-esc="doc.date_from"/>&ndash;&gt;
+                                </div>
+                                <div class="col-7">
+
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="row">
+                            <div class="col-12" style="border:none">
+                                <h3 style="border-bottom:1px solid black">Trial Balance</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Between:</td>
+                                            <td>
+                                                <t t-esc="doc.date_from"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="doc.date_from"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- <p>Between:</p>
+                                 <t t-esc="doc.date_from"/>
+                                 <t t-esc="doc.date_from"/>-->
+                            </div>
+                            <div class="col-7">
+
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:7px;">
+                            <div class="col-12">
+                                <!--<t t-esc="doc.action_get_move_line()"/>-->
+                                <table class="table table-borderless table-sm">
+                                    <thead style="border-top:1px solid black;border-bottom:1px solid black;width:100%">
+                                        <tr>
+                                            <th>Account</th>
+                                            <th>Name</th>
+                                            <th>Opn Dr</th>
+                                            <th>Opn Cr</th>
+                                            <th>Trans Dr</th>
+                                            <th>Trans Cr</th>
+                                            <th>Clos Dr</th>
+                                            <th>Clos Cr</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="border-bottom:1px solid grey">
+                                        <tr style="border-bottom:1px solid black;text-align:right">
+                                            <td style="text-align:left">06</td>
+                                            <td style="text-align:left">Current Assets</td>
+                                            <td>8103554</td>
+                                            <td>8103554</td>
+                                            <td>8103554</td>
+                                            <td>8103554</td>
+                                            <td>8103554</td>
+                                            <td>8103554</td>
+                                        </tr>
+                                        <tr style="text-align:right">
+                                            <td style="text-align:left">0101</td>
+                                            <td style="text-align:left">PROPRIETOR'S CAPITAL ACCOUNT</td>
+                                            <td>838,785</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>838,785</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <t t-foreach="doc.action_get_move_line()" t-as="line">
+                                            <tr style="text-align:right;border-bottom:1px solid black">
+                                                <td style="text-align:left">01</td>
+                                                <td style="text-align:left">
+                                                    <t t-esc="line.product_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="line.quantity"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="line.price_unit"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="line.price_subtotal"/>
+                                                </td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                                <td>0</td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+
+
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+    <!--<record id="action_trial_balance_report_id" model="ir.actions.report">
+        <field name="name">Trial Balance Report</field>
+        <field name="model">custom.trial.balance.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_file">trial_balance.custom_trial_balance_report</field>
+        <field name="report_name">trial_balance.custom_trial_balance_report</field>
+        <field name="binding_model_id" ref="model_custom_trial_balance_wizard"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat" ref="trial_balance.paperformat__custom_trial_orientation"/>
+    </record>-->
+    <record id="paperformat__custom_trial_orientation" model="report.paperformat">
+        <field name="name">A4 new</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+    <report
+            id="action_trial_balance_report_id"
+            model="custom.trial.balance.wizard"
+            string="Trial Balance Report"
+            report_type="qweb-pdf"
+            name="trial_balance.custom_trial_balance_report"
+            file="trial_balance.custom_trial_balance_report"
+            paperformat="trial_balance.paperformat__custom_trial_orientation"
+            menu="True"
+    />
+
+</odoo>

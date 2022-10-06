@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_custom_trial_balance_wizard_form" model="ir.ui.view">
+            <field name="name">custom_trial_balance_wizard</field>
+            <field name="model">custom.trial.balance.wizard</field>
+            <field name="arch" type="xml">
+                <form string="custom.trial.balance.wizard">
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="data_type"/>
+                        </group>
+
+                    </group>
+
+                    <footer>
+                        <button string="Print" class="btn-primary"  name="action_print_pdf" type="object"/> or
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_custom_trial_balance_wizard" model="ir.actions.act_window">
+            <field name="name">custom.trial.balance.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">custom.trial.balance.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_custom_trial_balance_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_custom_trial_balance_wizard"
+                  name="Custom Trial Balance"
+                  parent="account.menu_finance_reports"
+                  action="action_custom_trial_balance_wizard"/>
+
+    </data>
+</odoo>

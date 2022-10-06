@@ -1,0 +1,178 @@
+<odoo>
+    <data>
+        <record id="page_attendance" model="ir.ui.view">
+            <field name="name">Attendance</field>
+            <field name="type">qweb</field>
+            <field name="key">website.page_attendance</field>
+            <field name="arch" type="xml">
+                <t name="Use Case" t-name="website.page_attendance">
+                    <t t-call="website.layout">
+                        <!--                        <t t-set="checkin_state" t-value="request.env.user.attendance_state =='checked_in'" />-->
+                        <div id="wrap" class="oe_structure oe_empty">
+                            <section class="s_three_columns bg-200 o_colored_level oe_img_bg pt72 pb80" data-vcss="001"
+                                     data-snippet="s_three_columns" data-name="Columns"
+                                     style="background-image: url(&quot;/attendance_portal/static/pics/home-menu-bg-overlay.svg&quot;), linear-gradient(to right bottom, #77717e, #c9a8a9);">
+                                <div class="container">
+                                    <div class="row d-flex align-items-stretch">
+                                        <div class="s_col_no_bgcolor pt16 pb16 col-lg-6 offset-lg-3">
+                                            <div class="card bg-white h-100" style="border: none !important;">
+                                                <div class="card-top-shape">
+                                                    <t t-if="request.env.user.image_1920">
+                                                        <img t-att-src="image_data_uri(request.env.user.image_1920)"
+                                                             class="card-img-top card-top-img rounded-circle d-block mx-auto"
+                                                             alt="test"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span class="fa fa-user card-img-top card-top-img fa-3x rounded-circle d-block mx-auto"
+                                                              data-original-title="" title=""
+                                                              aria-describedby="tooltip9272"/>
+                                                    </t>
+                                                </div>
+                                                <div class="card-body" style="background-color:#F1EFF0 !important">
+                                                    <h3 class="card-title" style="text-align: center; padding-top:10px"
+                                                        t-esc="request.env.user.name"/>
+
+                                                    <div t-if="status=='checked_out'" class="checkin-data-div">
+                                                        <!--                                                        t-if="request.env.user.attendance_state == 'checked_out'">-->
+                                                        <h3 class="card-title" style="text-align: center; ">
+                                                            <font style="font-size: 18px;">Welcome!</font>
+                                                        </h3>
+                                                        <a class="fa fa-7x checkin-icon fa-sign-in" aria-label="Sign in"
+                                                           title="Sign in"/>
+                                                        <h3 class="mt0 mb0 text-center"
+                                                            style="color: #adb5bd !important;font-size:1.2rem">Click to
+                                                            <b>check in</b>
+                                                        </h3>
+                                                    </div>
+                                                    <div t-if="status=='checked_in'" class="checkout-data-div">
+                                                        <!--                                                    t-else="request.env.user.attendance_state =='checked_in'">-->
+                                                        <h3 class="card-title" style="text-align: center; ">
+                                                            <font style="font-size: 18px;">Want to check out?</font>
+                                                        </h3>
+                                                        <a class="fa fa-7x checkout-btn fa-sign-in" aria-label="Sign in"
+                                                           title="Sign in"/>
+                                                        <h3 class="mt0 mb0 text-center"
+                                                            style="color: #adb5bd !important;font-size:1.2rem">Click to
+                                                            <b>check out</b>
+                                                        </h3>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+                    </t>
+                </t>
+            </field>
+        </record>
+        <record id="menu_attendance_page_id" model="website.page">
+            <field name="url">/attendance</field>
+            <field name="is_published">True</field>
+            <field name="view_id" ref="page_attendance"/>
+            <field name="track">True</field>
+        </record>
+
+        <!-- Customisation  menu generation -->
+        <record id="menu_attendance_id" model="website.menu">
+            <field name="name">Attendance</field>
+            <field name="url">/attendance</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="group_ids" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="sequence">2</field>
+        </record>
+        <template id="assets_frontend" inherit_id="website.assets_frontend">
+            <xpath expr="//link[last()]" position="after">
+                <link rel="stylesheet" type="text/css" href="/attendance_portal/static/src/style.css"/>
+                <script type="text/javascript" src="/attendance_portal/static/src/js/attend.js"></script>
+                <link rel="stylesheet" type="text/css"
+                      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+            </xpath>
+        </template>
+
+        <!--change the view of this template-->
+        <template id="my_attendance" name="Attendance Dashboard">
+            <t t-call="website.layout">
+                <section class="s_cover o_colored_level s_parallax_no_overflow_hidden pb104 pt96" data-scroll-background-ratio="0" data-snippet="s_cover" data-name="Cover" style="background-color: rgb(255, 231, 156) !important;">
+                    <div class="container s_allow_columns">
+                        <h1 style="text-align: center;">
+                            <b>
+                                <font style="color: rgb(0, 49, 99); font-size: 48px;">
+                                    Employee Attendance
+                                    <br/>
+                                </font>
+                            </b>
+                        </h1>
+                    </div>
+                </section>
+                <section class="s_three_columns o_colored_level pt0 pb0" data-vcss="001" data-snippet="s_three_columns" data-name="Columns" style="background-color: rgba(255, 0, 0, 0.01) !important;">
+                    <div class="container">
+                        <div class="row d-flex align-items-stretch">
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-12">
+                                <div class="card bg-white h-100 border rounded shadow" style="border-width: 2px !important; border-radius: 1px !important; border-color: rgb(206, 212, 218) !important;">
+                                    <div class="card-body">
+                                        <table class="table table-sm">
+                                            <thead style="background-color: rgb(255, 231, 156);">
+                                                <tr style="border-bottom: 3px solid black;">
+                                                    <th style="padding: 10px;padding-top: 0px;">Employee</th>
+                                                    <th style="padding: 10px;padding-top: 0px;">Check-In</th>
+                                                    <th style="padding: 10px;padding-top: 0px;">Check-Out</th>
+                                                    <th style="padding: 10px;padding-top: 0px;">Work Hours</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr t-foreach="attendances" t-as="attendance" style="font-size: 15px;">
+                                                    <td>
+                                                        <span>
+                                                            <t t-esc="attendance.employee_id.name"/>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <t t-esc="str(attendance.check_in)"/>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <t t-esc="str(attendance.check_out)"/>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>
+                                                            <t t-esc="str('%.2f' %attendance.worked_hours)"/>
+                                                        </span>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--                 </div> -->
+            </t>
+        </template>
+
+        <record id="menu_my_attendance_page_id" model="website.page">
+            <field name="url">/my/attendances</field>
+            <field name="is_published">True</field>
+            <field name="view_id" ref="my_attendance"/>
+            <field name="track">True</field>
+        </record>
+f
+        <!-- Customisation  menu generation -->
+        <record id="menu_my_attendances" model="website.menu">
+            <field name="name">My Attendances</field>
+            <field name="url">/my/attendances</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <!--<field name="group_ids" eval="[(4, ref('base.group_portal'))]"/>-->
+            <field name="sequence">2</field>
+        </record>
+    </data>
+</odoo>

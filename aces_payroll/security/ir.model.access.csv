@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_late_attendances_line,late_ attendances_ line,aces_payroll.model_late_attendances_line,base.group_user,1,1,1,1
+access_monday_line,monday,aces_payroll.model_monday_line,base.group_user,1,1,1,1
+access_hr_payslip_wizard,hr_payslip_wizard,aces_payroll.model_hr_payslip_wizard,base.group_user,1,1,1,1
+access_hr_payslip_wizard_line,hr_payslip_wizard_line,aces_payroll.model_hr_payslip_wizard_line,base.group_user,1,1,1,1

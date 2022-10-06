@@ -1,0 +1,296 @@
+:root{
+    --white: #ffffff;
+    --black: #000000;
+    --dark-grey: #263043;
+    --dark-grey-1: #bababa;
+    --dark-grey-2: #989898;
+    --dark-grey-3: #423c3c;
+    --orange: #f7906c;
+    --light-white: #f9f9f9;
+    --primary-color:#fde8db ;
+    --primary-color-1:#989898 ;
+}
+@font-face {
+    font-family: Rubik-Bold;
+    src: url('/om_menu/static/fonts/rubik/Rubik-Bold.ttf');
+}
+@font-face {
+    font-family: Rubik-SemiBold;
+    src: url('/om_menu/static/fonts/rubik/Rubik-SemiBold.ttf');
+}
+@font-face {
+    font-family: Rubik-Medium;
+    src: url('/om_menu/static/fonts/rubik/Rubik-Medium.ttf');
+}
+@font-face {
+    font-family: Rubik-Regular;
+    src: url('/om_menu/static/fonts/rubik/Rubik-Regular.ttf');
+}
+@font-face {
+    font-family: Rubik-Light;
+    src: url('/om_menu/static/fonts/rubik/Rubik-Light.ttf');
+}
+
+body{
+    overflow-x: hidden;
+    background-color: var(--light-white);
+    font-family: Rubik-Regular;
+}
+a,a:hover{
+    text-decoration: none;
+}
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+.top-header{
+    background-size: cover;
+    background-position: center 0;
+    overflow: hidden;
+    height: 162px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.top-header .wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    position: relative;
+}
+.wrapper{
+    width: 100%;
+    max-width: 560px;
+}
+.logo{
+    display: flex;
+    padding: 18px;
+    background: #fff;
+    position: relative;
+    border-radius: 100%;
+    width: 82px;
+    height: 82px;
+    top: -24px;
+    overflow: hidden;
+}
+.top-header .wrapper .translate{
+    position: absolute;
+    right: 16px;
+    bottom: 20px;
+}
+.top-header .wrapper .translate select{
+    padding: 0.35rem 0;
+    border-radius: 10px;
+    min-width: 130px
+}
+.top-header .wrapper .translate select:focus-visible{
+    box-shadow: 0 0 0 4px var(--primary-color)!important;
+    border: 0;
+    outline: 0;
+}
+.goog-logo-link{
+    display: none;
+}
+/*Main Content Body*/
+.content-body{
+    background-color: var(--white);
+    border-radius: 1.5rem 1.5rem 0 0;
+    padding: 1.5rem 1rem;
+    margin-top: -2rem;
+    z-index: 1;
+}
+.page-title{
+    font-weight: 400;
+    font-size: 2rem;
+    color: var(--dark-grey-3);
+    font-family: Rubik-Regular;
+}
+.address{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: .5rem;
+    color: var(--dark-grey-2);
+    font-size: .9rem;
+    font-family: Rubik-Regular;
+}
+.Search-bar{
+    margin: 1rem 0;
+}
+.Search-bar .input-group>.form-control{
+    background-color: var(--light-white);
+    border: 0 !important;
+    padding: 1.5rem 0.75rem;
+}
+.Search-bar .input-group .btn:focus,
+.Search-bar .input-group>.form-control:focus{
+    z-index: 1;
+    box-shadow: none !important;
+}
+.Search-bar .input-group>.form-control::placeholder{
+    color: var(--dark-grey-1);
+}
+.ms-n5 {
+    margin-left: -40px;
+    color: var(--primary-color-1);
+}
+.ms-n5{
+    color: var(--black);
+}
+.ms-n5:hover{
+    color: var(--primary-color-1);
+}
+.categories:hover,
+.categories{
+    position: relative;
+    width: 100%;
+    height: 140px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 16px;
+    color: var(--white);
+    border-radius: 26px;
+    text-shadow: 0 2px 3px rgba(0,0,0,.46);
+    background-size: cover;
+    background-position: 50%;
+}
+.categories h2{
+    position: relative;
+    font-size: 1.75rem;
+    margin-top: 22px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.categories:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 26px;
+    background: var(--dark-grey);
+    opacity: .4;
+}
+/*products*/
+.category-title{
+    margin: 1rem 0;
+    font-size: 1.25rem;
+    color: var(--dark-grey-3);
+}
+.products{
+    margin-bottom:3.5rem;
+}
+.products .product-img{
+    position: relative;
+    margin-bottom: 10px;
+    width: 100%;
+    padding-top: 62.1%;
+}
+.products .product-img img{
+    width: 100%;
+    height: 100%;
+    position: absolute!important;
+    top: 0;
+    object-fit: cover;
+    border-radius: 1.5rem;
+}
+.product-body{
+    margin: .5rem 0;
+}
+.product-details{
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    width: 100%;
+}
+.product-details .product-title{
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 500;
+    overflow: hidden;
+    flex-grow: 1;
+    font-family: Rubik-SemiBold;
+    color: var(--dark-grey-3);
+}
+.product-details .product-weight{
+
+    color: var(--dark-grey-2);
+    font-size: 14px;
+    flex-shrink: 0;
+    white-space: nowrap;
+
+}
+.product-details .product-weight span{
+    margin-left: .1rem;
+}
+.product-description p{
+    margin-bottom: .5rem;
+    color: var(--dark-grey-3);
+    font-size: .85rem;
+}
+.product-description h3{
+    display: flex;
+    align-items: flex-start;
+    font-size: 1.5rem;
+    color: var(--orange);
+}
+.product-description h3 b {
+    font-weight: 500;
+    font-family: Rubik-SemiBold;
+}
+.product-description h3 span {
+    font-size: 1rem;
+    margin-left: 2px;
+    font-weight: 400;
+}
+.place-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 32px;
+    z-index: 100;
+    transform: translateZ(0);
+}
+.place-nav__inner {
+    position: relative;
+    padding: 0;
+}
+.place-nav .back-button {
+    position: absolute;
+    top: 12px;
+}
+.back-button {
+    border: none;
+    background: var(--white);
+    box-shadow:0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -1px rgba(0,0,0,0.06);
+    border-radius: 100%;
+    padding: 10px 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--black);
+}
+.back-button:hover{
+    color: var(--black);
+}
+/*footer*/
+.footer{
+    text-align: center;
+    padding: .75rem 0;
+}
+.footer a,
+.footer a:hover{
+    font-size: .8rem;
+    color: var(--dark-grey-1);
+    font-family: Rubik-Regular;
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_shipengine_rate" model="ir.ui.view">
+            <field name="name">shipengine.rate</field>
+            <field name="model">shipengine.rate</field>
+            <field name="arch" type="xml">
+                <form string="ShipEngine Rate">
+                    <field name="line_ids">
+                        <tree editable="top">
+                            <field name="select"/>
+                            <field name="carrier_nickname"/>
+                            <field name="service_type"/>
+                            <field name="service_code"/>
+                            <field name="ship_date"/>
+                            <field name="shipping_amount"/>
+                            <field name="insurance_amount"/>
+                            <field name="delivery_days"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button string="Set to Order" class="btn-primary"  name="get_shipping_record" type="object"/> or
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_shipengine_rate" model="ir.actions.act_window">
+            <field name="name">ShipEngine Rate</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipengine.rate</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

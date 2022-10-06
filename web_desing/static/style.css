@@ -1,0 +1,28 @@
+.hello{
+    color:red
+}
+#_layout{
+    min-height: 100vh;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+.place {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.place-header {
+    overflow: hidden;
+    height: 162px;
+    position: relative;
+}
+.place-header__bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center 0;
+}

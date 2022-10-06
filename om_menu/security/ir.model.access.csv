@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vendor_restaurant,vendor.restaurant,om_menu.model_vendor_restaurant,base.group_system,1,1,1,1
+access_vendor_restaurant_group,vendor.restaurant,om_menu.model_vendor_restaurant,om_menu.group_restaurant_read_write,1,1,0,0
+access_vendor_restaurant_category,vendor.restaurant.category,om_menu.model_vendor_restaurant_category,base.group_system,1,1,1,1
+access_vendor_restaurant_category_group,vendor.restaurant.category,om_menu.model_vendor_restaurant_category,om_menu.group_restaurant_read_write,1,1,0,0
+access_vendor_restaurant_product,vendor.restaurant.product,om_menu.model_vendor_restaurant_product,base.group_system,1,1,1,1
+access_vendor_restaurant_product_group,vendor.restaurant.product,om_menu.model_vendor_restaurant_product,om_menu.group_restaurant_read_write,1,1,0,0
+access_vendor_restaurant_contact,vendor.restaurant.Contact,om_menu.model_vendor_restaurant_contact,base.group_system,1,1,1,1
+access_vendor_restaurant_contact_group,vendor.restaurant.Contact,om_menu.model_vendor_restaurant_contact,om_menu.group_restaurant_read_write,1,1,0,0

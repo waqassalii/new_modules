@@ -1,0 +1,73 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="premium_sms_list">
+            <field name="name">Premium Sms list</field>
+            <field name="model">premium.sms</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="phone"/>
+                    <field name="doc_ref"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--form view -->
+
+        <record model="ir.ui.view" id="premium_sms_form">
+            <field name="name">Premium Sms list</field>
+            <field name="model">premium.sms</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,failed"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="phone"/>
+                            </group>
+                            <group>
+                                <field name="doc_ref"/>
+                            </group>
+                            <field name="message"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="premium_sms_action_window">
+            <field name="name">Premium Sms Window</field>
+            <field name="res_model">premium.sms</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- server action to the one above -->
+        <!--
+            <record model="ir.actions.server" id="premium_sms.action_server">
+              <field name="name">premium_sms server</field>
+              <field name="model_id" ref="model_premium_sms_premium_sms"/>
+              <field name="state">code</field>
+              <field name="code">
+                action = {
+                  "type": "ir.actions.act_window",
+                  "view_mode": "tree,form",
+                  "res_model": model._name,
+                }
+              </field>
+            </record>
+        -->
+
+        <!-- Top menu item -->
+        <menuitem name="Premium Sms" id="premium_sms_menu_root"/>
+        <!-- menu categories -->
+        <menuitem name="Premium Sms"
+                  id="premium_sms_menu"
+                  action="premium_sms_action_window"
+                  parent="premium_sms_menu_root"/>
+
+  </data>
+</odoo>

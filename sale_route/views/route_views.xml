@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="sale_route_id" model="ir.ui.view">
+            <field name="name">Route Name</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="route_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="sale_route_action" model="ir.actions.act_window">
+            <field name="name">Sale Route</field>
+            <field name="res_model">sale.route</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+         <menuitem id="sale_route"
+                   name="Sale Route"
+                   action="sale_route_action"
+                   parent="sale.menu_sale_config"
+                   sequence="2"/>
+    </data>
+</odoo>

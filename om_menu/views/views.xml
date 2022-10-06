@@ -1,0 +1,234 @@
+<odoo>
+    <data>
+        <record id="vendor_restaurant_list_view" model="ir.ui.view">
+            <field name="name">vendor.restaurant.list.view</field>
+            <field name="model">vendor.restaurant</field>
+            <field name="arch" type="xml">
+                <tree string="Restaurants">
+                    <field name="name"/>
+                    <field name="vendor_id"/>
+                    <field name="image"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vendor_restaurant_kanban_view" model="ir.ui.view">
+            <field name="name">vendor.restaurant.kanban.view</field>
+            <field name="model">vendor.restaurant</field>
+            <field name="arch" type="xml">
+                <kanban string="Kanban Leadger of Vendor Restaurant"
+                        class="o_res_partner_kanban">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click"
+                                 style="background-color:#17a2b8; width:200px; padding-bottom:0px">    <!-- for kanban click to show record -->
+                                <div style="background-color:#0e2e47;">
+                                    <ul style="list-style-type:none; background-color: #3a8293; color: #e9f4f6; margin-top:-5px">
+                                        <hr style="background-color:white; margin-left:-40px;"/>
+                                        <li style="margin-left:-25px; font-size:14px">
+                                            <b>Name :</b>
+                                            <field name="name"/>
+                                        </li>
+                                        <li style="margin-left:-25px; font-size:14px">
+                                            <b>Vendor :</b>
+                                            <field name="vendor_id"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!--                                        Form view       -->
+        <record id="vendor_restaurant_form_view" model="ir.ui.view">
+            <field name="name">vendor.restaurant.form.view</field>
+            <field name="model">vendor.restaurant</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+
+                        <form>
+                            <sheet>
+                                <field name="logo" widget="image" class="oe_avatar"/>
+                                <div class="oe_title">
+                                    <label for="name" class="oe_edit_only" string="Name"/>
+                                    <h1>
+                                        <field name="name"/>
+                                    </h1>
+                                    <div name="options_active"/>
+                                </div>
+                                <group>
+                                    <field name="image" widget="image"/>
+                                    <field name="url" widget="url"/>
+                                    <field name="vendor_id"/>
+
+                                </group>
+                                <group>
+                                    <group><field name="qr_code"/></group>
+                                    <group><field name="qr_image" widget="image" class="oe_avatar" nolabel="1"/></group>
+                                </group>
+                                <group>
+
+                                    <group>
+                                        <field name="user_name"/>
+                                        <field name="email" widget="email"/>
+                                        <field name="password"/>
+                                    </group>
+                                    <group></group>
+                                </group>
+                                <notebook>
+                                    <page string="Categories">
+                                        <field name="category_line_ids">
+                                            <kanban quick_create="false" create="true" delete="true">
+                                                <field name="id"/>
+                                                <field name="name"/>
+                                                <templates>
+                                                    <t t-name="kanban-box">
+                                                        <div class="oe_kanban_global_click" style="max-width: 200px">
+                                                            <div class="o_kanban_record_top">
+                                                                <img t-att-src="kanban_image('product.template', 'image_128', record.id.raw_value)"
+                                                                     class="oe_avatar oe_kanban_avatar_smallbox o_image_40_cover mb0"
+                                                                     alt="Avatar"/>
+                                                                <div class="o_kanban_record_headings ml8">
+                                                                    <strong class="o_kanban_record_title">
+                                                                        <field name="name"/>
+                                                                    </strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+                                                </templates>
+                                            </kanban>
+                                            <form>
+                                                <group>
+                                                      <group class="oe_title">
+                                                        <label for="name" class="oe_edit_only" string="Name"/>
+                                                        <h1><field name="name"/></h1>
+                                                        </group>
+                                                      <group>
+                                                        <field name="image" class="oe_avatar" widget="image"/>
+                                                        <field name="restaurant_ids" invisible="1"/>
+                                                      </group>
+                                                </group>
+                                                <notebook>
+                                                    <page string="Products">
+                                                        <field name="restaurant_product_line">
+
+                                                            <kanban quick_create="false" create="true" delete="true">
+                                                                <field name="id"/>
+                                                                <field name="name"/>
+                                                                <templates>
+                                                                    <t t-name="kanban-box">
+                                                                        <div class="oe_kanban_global_click"
+                                                                             style="max-width: 200px">
+                                                                            <div class="o_kanban_record_top">
+                                                                                <img t-att-src="kanban_image('product.template', 'image_128', record.id.raw_value)"
+                                                                                     class="oe_avatar oe_kanban_avatar_smallbox o_image_40_cover mb0"
+                                                                                     alt="Avatar"/>
+                                                                                <div class="o_kanban_record_headings ml8">
+                                                                                    <strong class="o_kanban_record_title">
+                                                                                        <field name="name"/>
+                                                                                    </strong>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </t>
+                                                                </templates>
+                                                            </kanban>
+                                                            <form string="Products Form">
+                                                                <group class="oe_title">
+                                                                    <label for="name" class="oe_edit_only" string="Name"/>
+                                                                    <h1><field name="name"/></h1>
+                                                                </group>
+                                                                <group>
+                                                                    <group>
+                                                                        <field name="arabic_name"/>
+                                                                        <field name="price"/>
+                                                                        <field name="size"/>
+                                                                        <field name="arabic_size"/>
+                                                                        <field name="ingredients"/>
+                                                                        <field name="arabic_ingredients"/>
+                                                                    </group>
+                                                                    <group>
+                                                                        <field name="image" class="oe_avatar"
+                                                                               widget="image"/>
+
+                                                                        <field name="category_id" context="{'default_category_id': id}" invisible="1"/>
+                                                                    </group>
+                                                                </group>
+                                                            </form>
+                                                        </field>
+                                                    </page>
+                                                </notebook>
+
+                                            </form>
+                                        </field>
+
+                                    </page>
+                                    <page string="Contact Us">
+                                        <group>
+                                            <group>
+                                                <field name="contact_image" widget="image"/>
+                                            </group>
+                                            <group>
+                                                <field name="contact_name"/>
+                                                <field name="contact_url" widget="url"/>
+                                            </group>
+                                        </group>
+                                        <field name="restaurant_contact_line">
+                                            <tree string="Contact Tree" editable="bottom">
+                                                <field name="name"/>
+                                                <field name="phone"/>
+                                                <field name="location"/>
+                                                <field name="rest_contact_id" invisible="1"/>
+                                            </tree>
+                                            <form>
+                                                <field name="name"/>
+                                                <field name="phone"/>
+                                                <field name="location"/>
+                                                <field name="rest_contact_id" invisible="1"/>
+                                            </form>
+                                        </field>
+                                    </page>
+                                    <page string="Social Links">
+<!--                                        <group>-->
+                                            <group>
+                                                 <h3>
+                                                     <label for="face_book" class="oe_edit_only" string="Link for FaceBook"/>
+                                                     <field name="face_book" widget="url" no_label="1"/>
+                                                 </h3>
+                                            </group>
+                                            <group>
+                                                 <h3>
+                                                     <label for="instagram" class="oe_edit_only" string="Link for Instagram"/>
+                                                     <field name="instagram" widget="url" no_label="1"/>
+                                                 </h3>
+                                            </group>
+<!--                                        </group>-->
+                                    </page>
+                                </notebook>
+
+                            </sheet>
+                        </form>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--                                        Action      -->
+        <record id="vendor_restaurant_action" model="ir.actions.act_window">
+            <field name="name">Restaurants</field>
+            <field name="res_model">vendor.restaurant</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <!--                                        Menus        -->
+        <menuitem id="restaurant_root" name="Restaurant" action="vendor_restaurant_action"/>
+<!--        <menuitem id="restaurant_sub_menu" parent="restaurant_root" name="Restaurants"/>-->
+
+<!--        <menuitem id="restaurant_kanban_menu" name="Restaurants" parent="restaurant_sub_menu"-->
+<!--                  sequence="1" action="vendor_restaurant_action"/>-->
+    </data>
+</odoo>

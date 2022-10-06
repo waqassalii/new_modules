@@ -1,0 +1,77 @@
+<odoo>
+
+    <template id="portal_my_attendances_inherit" name="Portal : Show Attendances" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">My Attendances</t>
+                <t t-set="url" t-value="'/my/attendances'"/>
+                <!--<t t-set="placeholder_count" t-value="'quotation_count'"/>-->
+            </t>
+
+        </xpath>
+    </template>
+    <!--new template-->
+    <template id="my_attendance_template_id" name="My Attendances">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Attendance</t>
+                <div>
+                <span class="small mr-1 navbar-text">Filter By:</span>
+                    <div class="btn-group">
+                        <button data-toggle="dropdown" class="btn btn-secondary btn-sm dropdown-toggle"></button>
+                        <div class="dropdown-menu" aria-labelledby="portal_searchbar_sortby">
+                            <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+                                <li class="list-group-item flex-grow-1"><a href="/my/attendances">All</a></li>
+                                <li class="list-group-item flex-grow-1"><a href="/my/attendances?day=7">Last Week</a></li>
+                                <li class="list-group-item flex-grow-1"><a href="/my/attendances?day=15">Last Fortnight</a></li>
+                                <li class="list-group-item flex-grow-1"><a href="/my/attendances?day=30">Last Month</a></li>
+                                <li class="list-group-item flex-grow-1"><a href="/my/attendances?day=90">Last Quarter</a></li>
+                                <li class="list-group-item flex-grow-1"><a href="/my/attendances?day=365">Last Year</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </t>
+            <t t-if="not attendances">
+                <p>There are currently no attendances for your account.</p>
+            </t>
+            <t t-if="attendances" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th class="text-left">Employee</th>
+                        <th class="text-left">Check-In</th>
+                        <th class="text-left">Check-Out</th>
+                        <th class="text-right">Work Hours</th>
+                    </tr>
+                </thead>
+                <t t-foreach="attendances" t-as="attendance">
+                    <tr>
+                        <td class="text-left">
+                            <span>
+                                <t t-esc="attendance.employee_id.name"/>
+                            </span>
+                        </td>
+                        <td class="text-left">
+                            <span>
+                                <t t-esc="str(attendance.check_in)"/>
+                            </span>
+                        </td>
+                        <td class="text-left">
+                            <span>
+                                <t t-esc="str(attendance.check_out)"/>
+                            </span>
+                        </td>
+                        <td class="text-right">
+                            <span>
+                                <t t-esc="str('%.2f' %attendance.worked_hours)"/>
+                            </span>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

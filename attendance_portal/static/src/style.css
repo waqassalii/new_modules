@@ -1,0 +1,73 @@
+
+.card-top-shape{
+    background:linear-gradient(to right bottom, #77717e, #c9a8a9);
+    height:90px;
+    border-radius: 0.2em 0.2em 0 0;
+    border:none !important;
+}
+
+.card-top-img{
+    transform: translateX(-3%) translateY(40%);
+    border:1px solid #d7d7d7;
+    width:80px;
+}
+
+.checkin-icon{
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+    color: #6c757d !important;
+    cursor: pointer;
+    margin: 0.5rem 10.5rem 0.5rem;
+    padding: 0.15em 0.3em;
+    border-radius: 0.1em;
+    background-color: white;
+    border-color: white;
+    text-align: center !important;
+}
+
+.checkin-icon:hover{
+    color: #00A09D !important;
+    background-color: #e6e5e5;
+    border-color: #e6e5e5;
+}
+
+.checkout-btn{
+    background-color: #F0AD4E;
+    border-color: #F0AD4E;
+    box-shadow: inset 0 -3px 0 rgba(0,0,0,0.3);
+    color: #6c757d !important;
+    cursor: pointer;
+    margin: 0.5rem 10.5rem 0.5rem;
+    padding: 0.15em 0.3em;
+    border-radius: 0.1em;
+    text-align: center !important;
+}
+.checkout-btn:hover {
+    background-color: #ed9d2b;
+    border-color: #ec971f;
+}
+.btn-goodbye{
+    padding: 0.2rem 11rem;
+    margin-left: 1.6em;
+    border-radius: 0px;
+}
+.btn-att-ok{
+    padding: 0.5rem 12.7rem;
+    margin-left: 1.6em;
+    border-radius: 0px;
+}
+.hidden-element{
+    display: none;
+}
+
+@media screen and (max-width:500px){
+    .checkout-btn, .checkin-icon{
+        margin: 1rem 0rem 1rem 5.5rem;
+    }
+    .card-top-shape{
+        z-index: 10;
+    }
+    .card-top-img{
+        margin-top: 2rem;
+    }
+}
+

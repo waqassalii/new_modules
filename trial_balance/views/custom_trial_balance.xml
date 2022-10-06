@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_custom_trial_balance_tree" model="ir.ui.view">
+            <field name="name">custom_trial_balance</field>
+            <field name="model">custom.trial.balance</field>
+            <field name="arch" type="xml">
+                <tree string="custom.trial.balance.wizard">
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_custom_trial_balance_form" model="ir.ui.view">
+            <field name="name">custom_trial_balance</field>
+            <field name="model">custom.trial.balance</field>
+            <field name="arch" type="xml">
+                <form string="custom.trial.balance.wizard">
+                    <header>
+                            <button name="action_move_line" type="object" string="get rec" class="btn_danger"/>
+                        </header>
+                    <sheet>
+
+                        <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--action-->
+        <record model="ir.actions.act_window" id="action_custom_trial_balance">
+            <field name="name">custom.trial.balance</field>
+            <field name="res_model">custom.trial.balance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_custom_trial_balance_root"
+                  name="Trial Balance"/>
+
+        <menuitem id="menu_custom_trial_balance"
+                  name="Custom Trial Balance"
+                  parent="menu_custom_trial_balance_root"/>
+        <menuitem id="menu_custom_trial_balance_child"
+                  name="Custom Trial Balance"
+                  parent="menu_custom_trial_balance"
+                  action="action_custom_trial_balance"/>
+
+
+    </data>
+</odoo>

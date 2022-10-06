@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_custom_pl_wizard_form" model="ir.ui.view">
+            <field name="name">Wizard</field>
+            <field name="model">custom.pl.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Wizard Form">
+                    <group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button string="Print" class="btn-primary" name="print_custom_pl_excel_report" type="object"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_custom_pl_wizard" model="ir.actions.act_window">
+            <field name="name">Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">custom.pl.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_custom_pl_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_custom_pl_wizard"
+                  name="Custom P and L"
+                  parent="account.menu_finance_reports"
+                  action="action_custom_pl_wizard"/>
+
+    </data>
+</odoo>
